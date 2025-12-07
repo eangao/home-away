@@ -1,3 +1,4 @@
+import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 
 function ImageInput() {
@@ -7,7 +8,7 @@ function ImageInput() {
       <Label htmlFor={name} className="capitalize">
         Image
       </Label>
-      <input
+      <Input
         type="file"
         required
         name={name}
