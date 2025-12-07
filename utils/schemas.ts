@@ -24,3 +24,23 @@ export function validateWithZodSchema<T>(schema: ZodSchema<T>, data: unknown) {
   }
   return results.data;
 }
+
+export const imageSchema = z.object({
+  image: validateFile(),
+});
+
+function validateFile() {
+  const maxUploadSize = 1024 * 1024;
+  const acceptedFileTypes = ["image/"];
+
+  return z
+    .instanceof(File)
+    .refine((file) => {
+      return !file || file.size <= maxUploadSize;
+    }, "Please upload a valid image file under 1MB.")
+    .refine((file) => {
+      return (
+        !file || acceptedFileTypes.some((type) => file.type.startsWith(type))
+      );
+    }, "Only image files are accepted.");
+}
