@@ -5,6 +5,7 @@ import { auth, clerkClient, currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { profileSchema } from "./schemas";
+import { log } from "console";
 
 const getAuthUser = async () => {
   const user = await currentUser();
@@ -83,13 +84,19 @@ export const updateProfileAction = async (
   const user = await getAuthUser();
   try {
     const rawData = Object.fromEntries(formData);
-    const validatedFields = profileSchema.parse(rawData);
+    const validatedFields = profileSchema.safeParse(rawData);
+
+    if (!validatedFields.success) {
+      const errorMessages = validatedFields.error.errors
+        .map((err) => err.message)
+        .join(", ");
+
+      throw new Error(`${errorMessages}`);
+    }
 
     await db.profile.update({
       where: { clerkId: user.id },
-      data: {
-        ...validatedFields,
-      },
+      data: validatedFields,
     });
     revalidatePath("/profile");
     return { message: "Profile updated successfully" };
