@@ -26,7 +26,7 @@ function CreatePropertyPage() {
               defaultValue="Cabin in Lativa"
             />
             <FormInput
-              name="tagLine"
+              name="tagline"
               type="text"
               label="Tagline (30 limit)"
               defaultValue="Dream Gateway Awaits You Here"
