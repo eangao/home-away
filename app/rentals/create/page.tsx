@@ -4,6 +4,7 @@ import { createPropertyAction } from "@/utils/actions";
 import { SubmitButton } from "@/components/form/Buttons";
 import PriceInput from "@/components/form/PriceInput";
 import CategoriesInput from "@/components/form/CategoriesInput";
+import TextAreaInput from "@/components/form/TextAreaInput";
 
 function CreatePropertyPage() {
   return (
@@ -31,7 +32,14 @@ function CreatePropertyPage() {
             {/* categories */}
             <CategoriesInput />
           </div>
+
           {/* text area / description */}
+          <TextAreaInput
+            name="description"
+            labelText="Description (10 - 1000 words)"
+            // defaultValue="Experience the ultimate glamping adventure in our charming Aframe Cabin Tent, nestled amidst a picturesque olive orchard. This cozy retreat offers all the modern comforts you need, including air conditioning, heating, a comfortable queen bed, TV, and Wi-Fi, all while being surrounded by breathtaking views of nature."
+          />
+
           <SubmitButton text="create rental" className="mt-12" />
         </FormContainer>
       </div>
