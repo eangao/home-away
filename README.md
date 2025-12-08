@@ -2359,6 +2359,7 @@ export type PropertyCardProps = {
   tagline: string;
   country: string;
   price: number;
+  image: true;
 };
 ```
 
