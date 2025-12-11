@@ -28,7 +28,8 @@ function CountriesInput({ defaultValue }: { defaultValue?: string }) {
             return (
               <SelectItem key={item.code} value={item.code}>
                 <span className="flex items-center gap-2">
-                  {item.flag} {item.name}
+                  <span className={`fi fi-${item.code.toLowerCase()}`} />{" "}
+                  {item.name}
                 </span>
               </SelectItem>
             );
