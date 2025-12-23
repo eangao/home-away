@@ -25,6 +25,7 @@ function ConfirmBooking() {
     checkIn,
     checkOut,
   });
+  
   return (
     <section>
       <FormContainer action={createBooking}>
